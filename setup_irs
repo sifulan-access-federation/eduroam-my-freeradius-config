@@ -1,0 +1,39 @@
+#!/bin/bash
+
+echo  "======= Setup .my IRS configuration ======="
+echo -n "1) Input your reaml (e.g. 'university.edu.my) : "
+read VAR_REALM
+echo -n "2) Input your secret key (e.g. 'eduroamkey') : "
+read VAR_SECRET_KEY
+echo -n "3) Input your Freeradius 3 installation directory (e.g. '/opt/freeradius-server-3.0.15') : "
+read VAR_INSTALL_PATH
+echo -n "4) Input your host certificate private key file (e.g. '/etc/letsencrypt/live/idp.university.edu.my/privkey.pem') : "
+read PRIV_KEY_FILE
+echo -n "5) Input your host certificate public key file (e.g. '/etc/letsencrypt/live/idp.university.edu.my/cert.pem') : "
+read PUBLIC_KEY_FILE
+
+#clients.conf setup
+awk -vVAR_INSTALL_PATH=$VAR_INSTALL_PATH -vPRIV_KEY_FILE=$PRIV_KEY_FILE -vPUBLIC_KEY_FILE=$PUBLIC_KEY_FILE '{gsub("VAR_INSTALL_PATH", VAR_INSTALL_PATH); gsub("PRIV_KEY_FILE", PRIV_KEY_FILE); gsub("PUBLIC_KEY_FILE", PUBLIC_KEY_FILE);print}' radiusd.conf.temp > radiusd.conf 
+
+#clients.conf setup
+awk -vVAR_REALM=$VAR_REALM -vVAR_SECRET_KEY=$VAR_SECRET_KEY '{gsub("YOUR_REALM",VAR_REALM); gsub("EDUROAM_SECRET",VAR_SECRET_KEY); print}' clients.conf.temp > clients.conf
+
+#proxy.conf setup
+awk -vVAR_REALM=$VAR_REALM -vVAR_SECRET_KEY=$VAR_SECRET_KEY '{gsub("YOUR_REALM",VAR_REALM); gsub("EDUROAM_SECRET",VAR_SECRET_KEY); print}' proxy.conf.temp > proxy.conf
+
+awk -vVAR_REALM=$VAR_REALM '{gsub("YOUR_REALM",VAR_REALM); print}' sites-available/eduroam.temp > sites-available/eduroam
+cp -rf * $VAR_INSTALL_PATH/etc/raddb
+
+#simbolic setup
+cp f_ticks.temp $VAR_INSTALL_PATH/etc/raddb/mods-available/f_ticks
+ln -s -f $VAR_INSTALL_PATH/etc/raddb/sites-available/eduroam $VAR_INSTALL_PATH/etc/raddb/sites-enabled/eduroam
+ln -s -f $VAR_INSTALL_PATH/etc/raddb/mods-available/f_ticks $VAR_INSTALL_PATH/etc/raddb/mods-enabled/f_ticks
+
+#install ca root certificate
+wget http://sifulan.my/download/tls-ca-bundle.pem -O $VAR_INSTALL_PATH/etc/raddb/certs/tls-ca-bundle.pem
+
+echo "done!!!"
+
+
+
+

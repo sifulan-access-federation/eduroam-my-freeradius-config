@@ -1,0 +1,26 @@
+eap {
+                default_eap_type = peap     # change to your organisation's preferred eap type (tls, ttls, peap, mschapv2)
+                timer_expire     = 60
+                ignore_unknown_eap_types = no
+                cisco_accounting_username_bug = no
+ 
+                tls = ${tls}
+ 
+                ttls {
+                        default_eap_type = mschapv2
+                        copy_request_to_tunnel = yes
+                        use_tunneled_reply = yes
+                        virtual_server = "inner-tunnel"
+                }
+ 
+                peap {
+                        default_eap_type = mschapv2
+                        copy_request_to_tunnel = yes
+                        use_tunneled_reply = yes
+                        virtual_server = "inner-tunnel"
+                }
+ 
+                mschapv2 {
+                }
+ 
+        }
