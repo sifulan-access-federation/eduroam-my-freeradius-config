@@ -4,7 +4,19 @@ eap {
                 ignore_unknown_eap_types = no
                 cisco_accounting_username_bug = no
  
-                tls = ${tls}
+		tls {
+        		certdir = ${confdir}/certs
+        		private_key_file = PRIV_KEY_FILE
+			certificate_file = PUBLIC_KEY_FILE
+        		ca_file = ${certdir}/tls-ca-bundle2.pem
+        		dh_file = ${certdir}/dh
+        		random_file = /dev/urandom
+        		fragment_size = 1024
+        		include_length = yes
+        		check_crl = no
+        		cipher_list = "DEFAULT"
+		}
+
  
                 ttls {
                         default_eap_type = mschapv2

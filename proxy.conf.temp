@@ -64,14 +64,14 @@ home_server flr2 {
         status_check         = status-server
 }
  
-home_server_pool eduroam {
-        type                         = fail-over
-        home_server             = flr1
-        home_server		= flr2
-        nostrip
-}
+#home_server_pool eduroam {
+#        type                         = fail-over
+#        home_server             = flr1
+#        home_server		= flr2
+#        nostrip
+#}
  
-realm "~.+$" {
-        pool                    = eduroam
-        nostrip
-}
+#realm "~.+$" {
+#        pool                    = eduroam
+#        nostrip
+#}

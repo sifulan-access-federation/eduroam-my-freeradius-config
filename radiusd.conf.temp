@@ -257,7 +257,7 @@ tls {
 	ca_file = ${certdir}/tls-ca-bundle.pem
 	dh_file = ${certdir}/dh
 	random_file = /dev/urandom
-	fragment_size = 1024
+	fragment_size = 8096
 	include_length = yes
 	check_crl = no
 	cipher_list = "DEFAULT"

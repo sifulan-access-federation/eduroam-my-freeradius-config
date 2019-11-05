@@ -29,23 +29,23 @@ client localhost {
 #	add_cui = yes
 }
 
-client flr1 {
-	ipaddr          = 150.129.185.31
-	secret          = EDUROAM_SECRET
-        shortname     = flr1
-	nas_type       = other
-        virtual_server = eduroam
-        Operator-Name  = 1nro1.eduroam.my
-}
+#client flr1 {
+#	ipaddr          = 150.129.185.31
+#	secret          = EDUROAM_SECRET
+#        shortname     = flr1
+#	nas_type       = other
+#        virtual_server = eduroam
+#        Operator-Name  = 1nro1.eduroam.my
+#}
 
-client flr2 {
-	ipaddr		= 119.40.121.26
-        secret          = EDUROAM_SECRET
-        shortname       = flr2
-        nas_type        = other
-        virtual_server = eduroam
-        Operator-Name  = 1nro2.eduroam.my       
-}
+#client flr2 {
+#	ipaddr		= 119.40.121.26
+#        secret          = EDUROAM_SECRET
+#        shortname       = flr2
+#        nas_type        = other
+#        virtual_server = eduroam
+#        Operator-Name  = 1nro2.eduroam.my       
+#}
 
 
 # Your Institution AP  example        #

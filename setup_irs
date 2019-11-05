@@ -12,11 +12,17 @@ read PRIV_KEY_FILE
 echo -n "5) Input your host certificate public key file (e.g. '/etc/letsencrypt/live/idp.university.edu.my/cert.pem') : "
 read PUBLIC_KEY_FILE
 
-#clients.conf setup
+#radiusd.conf setup
 awk -vVAR_INSTALL_PATH=$VAR_INSTALL_PATH -vPRIV_KEY_FILE=$PRIV_KEY_FILE -vPUBLIC_KEY_FILE=$PUBLIC_KEY_FILE '{gsub("VAR_INSTALL_PATH", VAR_INSTALL_PATH); gsub("PRIV_KEY_FILE", PRIV_KEY_FILE); gsub("PUBLIC_KEY_FILE", PUBLIC_KEY_FILE);print}' radiusd.conf.temp > radiusd.conf 
+
+#eap setup
+awk -vVAR_INSTALL_PATH=$VAR_INSTALL_PATH -vPRIV_KEY_FILE=$PRIV_KEY_FILE -vPUBLIC_KEY_FILE=$PUBLIC_KEY_FILE '{gsub("VAR_INSTALL_PATH", VAR_INSTALL_PATH); gsub("PRIV_KEY_FILE", PRIV_KEY_FILE); gsub("PUBLIC_KEY_FILE", PUBLIC_KEY_FILE);print}' eap.temp > mods-available/eap
 
 #clients.conf setup
 awk -vVAR_REALM=$VAR_REALM -vVAR_SECRET_KEY=$VAR_SECRET_KEY '{gsub("YOUR_REALM",VAR_REALM); gsub("EDUROAM_SECRET",VAR_SECRET_KEY); print}' clients.conf.temp > clients.conf
+
+#radsec setup
+awk -vVAR_SECRET_KEY=$VAR_SECRET_KEY '{gsub("EDUROAM_SECRET",VAR_SECRET_KEY); print}' tls.temp > sites-available/tls
 
 #proxy.conf setup
 awk -vVAR_REALM=$VAR_REALM -vVAR_SECRET_KEY=$VAR_SECRET_KEY '{gsub("YOUR_REALM",VAR_REALM); gsub("EDUROAM_SECRET",VAR_SECRET_KEY); print}' proxy.conf.temp > proxy.conf
