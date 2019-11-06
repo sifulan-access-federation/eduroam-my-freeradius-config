@@ -48,13 +48,12 @@ client localhost {
 #}
 
 
-# Your Institution AP  example        #
-#client your-ap1 {
-#         ipaddr   =  AP_IP
-#	secret  =   EDUROAM_SECRET
-#	nas_type = other
-#	Operator-Name = 1YOUR_REALM
-#	add_cui = yes
-#        require_message_authenticator = no
-#	shortname =  your-ap1
+# Your Institution Access Point Controller example
+#client AccessPoint-Controller {
+#	ipaddr		= IP/SUBNET
+#	secret		= PASSWORD
+#	shortname	= AccessPoint-Controller
+#	nas_type	= other
+#	add_cui		= yes
+#	virtual_server  = eduroam
 #}
