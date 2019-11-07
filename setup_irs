@@ -33,7 +33,9 @@ cp -rf * $VAR_INSTALL_PATH/etc/raddb
 #simbolic setup
 cp f_ticks.temp $VAR_INSTALL_PATH/etc/raddb/mods-available/f_ticks
 ln -s -f $VAR_INSTALL_PATH/etc/raddb/sites-available/eduroam $VAR_INSTALL_PATH/etc/raddb/sites-enabled/eduroam
+ln -s -f $VAR_INSTALL_PATH/etc/raddb/sites-available/tls $VAR_INSTALL_PATH/etc/raddb/sites-enabled/tls
 ln -s -f $VAR_INSTALL_PATH/etc/raddb/mods-available/f_ticks $VAR_INSTALL_PATH/etc/raddb/mods-enabled/f_ticks
+
 
 #install ca root certificate
 wget http://sifulan.my/download/tls-ca-bundle.pem -O $VAR_INSTALL_PATH/etc/raddb/certs/tls-ca-bundle.pem
