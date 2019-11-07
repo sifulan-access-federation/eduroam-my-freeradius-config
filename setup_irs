@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo  "======= Setup .my IRS configuration ======="
-echo -n "1) Input your reaml (e.g. 'university.edu.my) : "
+echo -n "1) Input your realmn (e.g. 'university.edu.my) : "
 read VAR_REALM
 echo -n "2) Input your secret key (e.g. 'eduroamkey') : "
 read VAR_SECRET_KEY
