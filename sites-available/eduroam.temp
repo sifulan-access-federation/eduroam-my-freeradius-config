@@ -35,24 +35,24 @@ authorize {
 	#  cui below and set "add_cui = yes" for these clients in clients.conf
 	#cui
 	auth_log
+	suffix
 	chap
 	mschap
 	#digest
-         # wimax
-#	IPASS
-	suffix
+        # wimax
+	#IPASS
 
-#	ntdomain
+	#ntdomain
 
 	eap {
 		ok = return
 	}
-#	unix
+	#unix
 
 	#
 	#  Read the 'users' file.  In v3, this is located in
 	#  raddb/mods-config/files/authorize
-	files
+	#files
 
 	#
 	#  Look in an SQL database.  The schema of the database
@@ -66,11 +66,11 @@ authorize {
 
 	#
 	#  Enforce daily limits on time spent logged in.
-#	daily
+	#daily
 
 	#
-#	expiration
-#	logintime
+	#expiration
+	#logintime
 
 	#
 	#  If no other module has claimed responsibility for
@@ -125,11 +125,11 @@ authenticate {
 	#  If you have a Cisco SIP server authenticating against
 	#  FreeRADIUS, uncomment the following line, and the 'digest'
 	#  line in the 'authorize' section.
-#	digest
+	#digest
 
 	#
 	#  Pluggable Authentication Modules.
-#	pam
+	#pam
 
 	#  Uncomment it if you want to use ldap for authentication
 	#
@@ -142,9 +142,9 @@ authenticate {
 	#  authentication server, and knows what to do with authentication.
 	#  LDAP servers do not.
 	#
-#	Auth-Type LDAP {
-#		ldap
-#	}
+	#Auth-Type LDAP {
+	#	ldap
+	#}
 
 	#
 	#  Allow EAP authentication.
@@ -156,15 +156,15 @@ authenticate {
 	#  If you want to filter out these attributes, uncomment
 	#  the following lines.
 	#
-#	Auth-Type eap {
-#		eap {
-#			handled = 1
-#		}
-#		if (handled && (Response-Packet-Type == Access-Challenge)) {
-#			attr_filter.access_challenge.post-auth
-#			handled  # override the "updated" code from attr_filter
-#		}
-#	}
+	#Auth-Type eap {
+	#	eap {
+	#		handled = 1
+	#	}
+	#	if (handled && (Response-Packet-Type == Access-Challenge)) {
+	#		attr_filter.access_challenge.post-auth
+	#		handled  # override the "updated" code from attr_filter
+	#	}
+	#}
 }
 
 
@@ -178,7 +178,7 @@ preacct {
 	# Merge Acct-[Input|Output]-Gigawords and Acct-[Input-Output]-Octets
 	#  into a single 64bit counter Acct-[Input|Output]-Octets64.
 	#
-#	acct_counters64
+	#acct_counters64
 
 	#
 	#  Session start times are *implied* in RADIUS.
@@ -207,10 +207,10 @@ preacct {
 	#
 	#  Accounting requests are generally proxied to the same
 	#  home server as authentication requests.
-#	IPASS
+	#IPASS
 	suffix
 
-#	ntdomain
+	#ntdomain
 
 	#
 	#  Read the 'acct_users' file
